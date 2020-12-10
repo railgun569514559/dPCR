@@ -2,16 +2,18 @@
 
 # Form implementation generated from reading ui file 'controler_gui.ui'
 #
-# Created by: PyQt5 UI code generator 5.9.2
+# Created by: PyQt5 UI code generator 5.12.3
 #
 # WARNING! All changes made in this file will be lost!
 
+
 from PyQt5 import QtCore, QtGui, QtWidgets
+
 
 class Ui_Form(object):
     def setupUi(self, Form):
         Form.setObjectName("Form")
-        Form.resize(459, 888)
+        Form.resize(457, 888)
         self.verticalLayout = QtWidgets.QVBoxLayout(Form)
         self.verticalLayout.setObjectName("verticalLayout")
         self.gridLayout_4 = QtWidgets.QGridLayout()
@@ -139,6 +141,9 @@ class Ui_Form(object):
         self.verticalLayout_4.addWidget(self.ZSpeedLabel, 0, QtCore.Qt.AlignHCenter)
         self.gridLayout_3.addLayout(self.verticalLayout_4, 0, 1, 1, 1)
         self.verticalLayout.addWidget(self.groupBox_2)
+        self.ZeroOutBtn = QtWidgets.QPushButton(Form)
+        self.ZeroOutBtn.setObjectName("ZeroOutBtn")
+        self.verticalLayout.addWidget(self.ZeroOutBtn)
         self.verticalLayout.setStretch(0, 1)
         self.verticalLayout.setStretch(1, 2)
         self.verticalLayout.setStretch(2, 2)
@@ -171,4 +176,4 @@ class Ui_Form(object):
         self.zPositiveBtn.setText(_translate("Form", "Z+"))
         self.zNegativeBtn.setText(_translate("Form", "Z-"))
         self.ZSpeedLabel.setText(_translate("Form", "TextLabel"))
-
+        self.ZeroOutBtn.setText(_translate("Form", "归零"))

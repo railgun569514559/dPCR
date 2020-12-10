@@ -6,14 +6,14 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>459</width>
+    <width>457</width>
     <height>888</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout" stretch="1,2,2">
+  <layout class="QVBoxLayout" name="verticalLayout" stretch="1,2,2,0">
    <item>
     <layout class="QGridLayout" name="gridLayout_4">
      <item row="0" column="0">
@@ -253,6 +253,13 @@
        </layout>
       </item>
      </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPushButton" name="ZeroOutBtn">
+     <property name="text">
+      <string>归零</string>
+     </property>
     </widget>
    </item>
   </layout>
