@@ -150,7 +150,7 @@ class ZMCWrapper:
     # print(match.group())
 
     # 移动轴
-    def move(self, distance):
+    def table_move(self, distance):
         str1 = "MOVE(%d)" % distance
         self.Zmc_DriectCommand(str1)
 
