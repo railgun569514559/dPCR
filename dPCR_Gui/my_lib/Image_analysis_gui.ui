@@ -19,7 +19,7 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <layout class="QGridLayout" name="gridLayout_21" columnstretch="1,5,1">
+  <layout class="QGridLayout" name="gridLayout_15" columnstretch="1,5,1">
    <item row="0" column="0">
     <widget class="QFrame" name="frame_3">
      <property name="frameShape">
@@ -29,6 +29,305 @@
       <enum>QFrame::Raised</enum>
      </property>
      <layout class="QGridLayout" name="gridLayout_13">
+      <item row="3" column="0">
+       <widget class="QFrame" name="frame_6">
+        <property name="frameShape">
+         <enum>QFrame::StyledPanel</enum>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Raised</enum>
+        </property>
+        <layout class="QGridLayout" name="gridLayout_12">
+         <item row="0" column="1">
+          <widget class="QCheckBox" name="isSaveRectifyImgCheck">
+           <property name="text">
+            <string>是否保留校正图</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="0">
+          <widget class="QPushButton" name="RectificationBtn">
+           <property name="text">
+            <string>图像校正</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="0">
+          <widget class="QPushButton" name="returnOrignalImgBtn">
+           <property name="text">
+            <string>返回原始图片</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="1">
+          <widget class="QPushButton" name="HoughCircleBtn">
+           <property name="text">
+            <string>霍夫原检测</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="0">
+          <widget class="QPushButton" name="FindRectBtn">
+           <property name="text">
+            <string>找矩形</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="1">
+          <widget class="QPushButton" name="FindMaxRectBtn">
+           <property name="text">
+            <string>寻找最大矩形</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item row="2" column="0">
+       <widget class="QGroupBox" name="groupBox_3">
+        <property name="styleSheet">
+         <string notr="true">/*这是对QGroupBox的框样式进行设定*/
+QGroupBox{
+	
+	border: 2px solid rgb(80,80,80);
+	border-radius:6px;
+ margin-top: 0ex
+}
+
+QGroupBox:title {
+    rgb(0, 0, 0)
+    subcontrol-origin: margin;
+	
+
+}</string>
+        </property>
+        <property name="title">
+         <string/>
+        </property>
+        <layout class="QGridLayout" name="gridLayout_11">
+         <item row="0" column="0">
+          <widget class="QFrame" name="frame_4">
+           <property name="styleSheet">
+            <string notr="true">.QFrame {
+
+border-style: solid;
+border-bottom: 2px solid;
+	border-bottom-color: rgb(134, 130, 139);
+}</string>
+           </property>
+           <property name="frameShape">
+            <enum>QFrame::StyledPanel</enum>
+           </property>
+           <property name="frameShadow">
+            <enum>QFrame::Raised</enum>
+           </property>
+           <layout class="QGridLayout" name="gridLayout_10">
+            <item row="0" column="0">
+             <widget class="QRadioButton" name="ThresholdRadio">
+              <property name="text">
+               <string>全局阈值</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="1">
+             <layout class="QHBoxLayout" name="horizontalLayout_4">
+              <item>
+               <widget class="QLabel" name="label">
+                <property name="text">
+                 <string>阈值大小：</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLineEdit" name="ThresholdValudEdit"/>
+              </item>
+             </layout>
+            </item>
+            <item row="1" column="0">
+             <widget class="QRadioButton" name="GaussThresholdRadio">
+              <property name="text">
+               <string>自适应高斯阈值</string>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="0">
+             <widget class="QRadioButton" name="MeanThresholdRadio">
+              <property name="text">
+               <string>自适应均值阈值</string>
+              </property>
+             </widget>
+            </item>
+            <item row="3" column="0">
+             <widget class="QRadioButton" name="OTSUThresholdRadio">
+              <property name="text">
+               <string>OTSU阈值</string>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="1">
+             <layout class="QHBoxLayout" name="horizontalLayout_5">
+              <item>
+               <widget class="QLabel" name="label_2">
+                <property name="text">
+                 <string>区块大小：</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLineEdit" name="BlockSizeEdit"/>
+              </item>
+             </layout>
+            </item>
+           </layout>
+          </widget>
+         </item>
+         <item row="1" column="0">
+          <widget class="QFrame" name="frame_5">
+           <property name="frameShape">
+            <enum>QFrame::StyledPanel</enum>
+           </property>
+           <property name="frameShadow">
+            <enum>QFrame::Raised</enum>
+           </property>
+           <layout class="QHBoxLayout" name="horizontalLayout_11">
+            <item>
+             <widget class="QPushButton" name="ExecuteThresBtn">
+              <property name="text">
+               <string>阈值</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="ThresImgBtn">
+              <property name="text">
+               <string>阈值图像</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="isSaveThresImgCheck">
+              <property name="text">
+               <string>是否保留阈值图</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QGroupBox" name="groupBox_2">
+        <property name="styleSheet">
+         <string notr="true">/*这是对QGroupBox的框样式进行设定*/
+QGroupBox{
+	
+	border: 2px solid rgb(80,80,80);
+	border-radius:6px;
+ margin-top: 0ex
+}
+
+QGroupBox:title {
+    rgb(0, 0, 0)
+    subcontrol-origin: margin;
+	
+
+}</string>
+        </property>
+        <property name="title">
+         <string/>
+        </property>
+        <layout class="QGridLayout" name="gridLayout_8">
+         <item row="0" column="0">
+          <widget class="QFrame" name="frame_7">
+           <property name="styleSheet">
+            <string notr="true">.QFrame {
+
+border-style: solid;
+border-bottom: 2px solid;
+	border-bottom-color: rgb(134, 130, 139);
+}</string>
+           </property>
+           <property name="frameShape">
+            <enum>QFrame::StyledPanel</enum>
+           </property>
+           <property name="frameShadow">
+            <enum>QFrame::Raised</enum>
+           </property>
+           <layout class="QGridLayout" name="gridLayout">
+            <item row="2" column="0">
+             <widget class="QRadioButton" name="GaussBlurRadio">
+              <property name="text">
+               <string>高斯滤波</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="0">
+             <widget class="QRadioButton" name="medianBlurRadio">
+              <property name="text">
+               <string>中值滤波</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="0">
+             <widget class="QRadioButton" name="averageBlurRadio">
+              <property name="text">
+               <string>均值滤波</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="1">
+             <layout class="QHBoxLayout" name="horizontalLayout_10" stretch="1,3">
+              <item>
+               <widget class="QLabel" name="label_12">
+                <property name="text">
+                 <string>卷积核：</string>
+                </property>
+               </widget>
+              </item>
+              <item alignment="Qt::AlignHCenter">
+               <widget class="QLineEdit" name="BlurkernalEdit"/>
+              </item>
+             </layout>
+            </item>
+           </layout>
+          </widget>
+         </item>
+         <item row="1" column="0">
+          <layout class="QHBoxLayout" name="horizontalLayout_13" stretch="1,1,2">
+           <item alignment="Qt::AlignHCenter|Qt::AlignVCenter">
+            <widget class="QPushButton" name="blurBtn">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="text">
+              <string>滤波</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="BluredImgBtn">
+             <property name="text">
+              <string>滤波图像</string>
+             </property>
+            </widget>
+           </item>
+           <item alignment="Qt::AlignHCenter">
+            <widget class="QCheckBox" name="isSaveBlurImgCheck">
+             <property name="text">
+              <string>是否保留滤波图</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+        </layout>
+       </widget>
+      </item>
       <item row="0" column="0">
        <widget class="QGroupBox" name="groupBox">
         <property name="styleSheet">
@@ -270,294 +569,6 @@ border-color: red;
         </layout>
        </widget>
       </item>
-      <item row="1" column="0">
-       <widget class="QGroupBox" name="groupBox_2">
-        <property name="styleSheet">
-         <string notr="true">/*这是对QGroupBox的框样式进行设定*/
-QGroupBox{
-	
-	border: 2px solid rgb(80,80,80);
-	border-radius:6px;
- margin-top: 0ex
-}
-
-QGroupBox:title {
-    rgb(0, 0, 0)
-    subcontrol-origin: margin;
-	
-
-}</string>
-        </property>
-        <property name="title">
-         <string/>
-        </property>
-        <layout class="QGridLayout" name="gridLayout_8">
-         <item row="0" column="0">
-          <widget class="QFrame" name="frame_7">
-           <property name="styleSheet">
-            <string notr="true">.QFrame {
-
-border-style: solid;
-border-bottom: 2px solid;
-	border-bottom-color: rgb(134, 130, 139);
-}</string>
-           </property>
-           <property name="frameShape">
-            <enum>QFrame::StyledPanel</enum>
-           </property>
-           <property name="frameShadow">
-            <enum>QFrame::Raised</enum>
-           </property>
-           <layout class="QGridLayout" name="gridLayout">
-            <item row="2" column="0">
-             <widget class="QRadioButton" name="GaussBlurRadio">
-              <property name="text">
-               <string>高斯滤波</string>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="0">
-             <widget class="QRadioButton" name="medianBlurRadio">
-              <property name="text">
-               <string>中值滤波</string>
-              </property>
-             </widget>
-            </item>
-            <item row="0" column="0">
-             <widget class="QRadioButton" name="averageBlurRadio">
-              <property name="text">
-               <string>均值滤波</string>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="1">
-             <layout class="QHBoxLayout" name="horizontalLayout_10" stretch="1,3">
-              <item>
-               <widget class="QLabel" name="label_12">
-                <property name="text">
-                 <string>卷积核：</string>
-                </property>
-               </widget>
-              </item>
-              <item alignment="Qt::AlignHCenter">
-               <widget class="QLineEdit" name="kernalEdit"/>
-              </item>
-             </layout>
-            </item>
-           </layout>
-          </widget>
-         </item>
-         <item row="1" column="0">
-          <layout class="QHBoxLayout" name="horizontalLayout_13" stretch="1,1,2">
-           <item alignment="Qt::AlignHCenter|Qt::AlignVCenter">
-            <widget class="QPushButton" name="blurBtn">
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
-               <horstretch>0</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
-             <property name="text">
-              <string>滤波</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QPushButton" name="BluredImgBtn">
-             <property name="text">
-              <string>滤波图像</string>
-             </property>
-            </widget>
-           </item>
-           <item alignment="Qt::AlignHCenter">
-            <widget class="QCheckBox" name="isSaveBlurImgCheck">
-             <property name="text">
-              <string>是否保留滤波图</string>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </item>
-        </layout>
-       </widget>
-      </item>
-      <item row="2" column="0">
-       <widget class="QGroupBox" name="groupBox_3">
-        <property name="styleSheet">
-         <string notr="true">/*这是对QGroupBox的框样式进行设定*/
-QGroupBox{
-	
-	border: 2px solid rgb(80,80,80);
-	border-radius:6px;
- margin-top: 0ex
-}
-
-QGroupBox:title {
-    rgb(0, 0, 0)
-    subcontrol-origin: margin;
-	
-
-}</string>
-        </property>
-        <property name="title">
-         <string/>
-        </property>
-        <layout class="QGridLayout" name="gridLayout_11">
-         <item row="0" column="0">
-          <widget class="QFrame" name="frame_4">
-           <property name="styleSheet">
-            <string notr="true">.QFrame {
-
-border-style: solid;
-border-bottom: 2px solid;
-	border-bottom-color: rgb(134, 130, 139);
-}</string>
-           </property>
-           <property name="frameShape">
-            <enum>QFrame::StyledPanel</enum>
-           </property>
-           <property name="frameShadow">
-            <enum>QFrame::Raised</enum>
-           </property>
-           <layout class="QGridLayout" name="gridLayout_10">
-            <item row="0" column="0">
-             <widget class="QRadioButton" name="ThresholdRadio">
-              <property name="text">
-               <string>全局阈值</string>
-              </property>
-             </widget>
-            </item>
-            <item row="0" column="1">
-             <layout class="QHBoxLayout" name="horizontalLayout_4">
-              <item>
-               <widget class="QLabel" name="label">
-                <property name="text">
-                 <string>阈值大小：</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QLineEdit" name="ThresholdValudEdit"/>
-              </item>
-             </layout>
-            </item>
-            <item row="1" column="0">
-             <widget class="QRadioButton" name="GaussThresholdRadio">
-              <property name="text">
-               <string>自适应高斯阈值</string>
-              </property>
-             </widget>
-            </item>
-            <item row="2" column="0">
-             <widget class="QRadioButton" name="MeanThresholdRadio">
-              <property name="text">
-               <string>自适应均值阈值</string>
-              </property>
-             </widget>
-            </item>
-            <item row="3" column="0">
-             <widget class="QRadioButton" name="OTSUThresholdRadio">
-              <property name="text">
-               <string>OTSU阈值</string>
-              </property>
-             </widget>
-            </item>
-            <item row="2" column="1">
-             <layout class="QHBoxLayout" name="horizontalLayout_5">
-              <item>
-               <widget class="QLabel" name="label_2">
-                <property name="text">
-                 <string>区块大小：</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QLineEdit" name="BlockSizeEdit"/>
-              </item>
-             </layout>
-            </item>
-           </layout>
-          </widget>
-         </item>
-         <item row="1" column="0">
-          <widget class="QFrame" name="frame_5">
-           <property name="frameShape">
-            <enum>QFrame::StyledPanel</enum>
-           </property>
-           <property name="frameShadow">
-            <enum>QFrame::Raised</enum>
-           </property>
-           <layout class="QHBoxLayout" name="horizontalLayout_11">
-            <item>
-             <widget class="QPushButton" name="ExecuteThresBtn">
-              <property name="text">
-               <string>阈值</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QPushButton" name="ThresImgBtn">
-              <property name="text">
-               <string>阈值图像</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QCheckBox" name="isSaveThresImgCheck">
-              <property name="text">
-               <string>是否保留阈值图</string>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </widget>
-         </item>
-        </layout>
-       </widget>
-      </item>
-      <item row="3" column="0">
-       <widget class="QFrame" name="frame_6">
-        <property name="frameShape">
-         <enum>QFrame::StyledPanel</enum>
-        </property>
-        <property name="frameShadow">
-         <enum>QFrame::Raised</enum>
-        </property>
-        <layout class="QGridLayout" name="gridLayout_12">
-         <item row="0" column="0">
-          <widget class="QPushButton" name="RectificationBtn">
-           <property name="text">
-            <string>图像校正</string>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="1">
-          <widget class="QCheckBox" name="isSaveRectifyImgCheck">
-           <property name="text">
-            <string>是否保留校正图</string>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="0">
-          <widget class="QPushButton" name="returnOrignalImgBtn">
-           <property name="text">
-            <string>返回原始图片</string>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="1">
-          <widget class="QPushButton" name="HoughCircleBtn">
-           <property name="text">
-            <string>霍夫原检测</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </widget>
-      </item>
-      <item row="4" column="0">
-       <widget class="QListView" name="listView"/>
-      </item>
      </layout>
     </widget>
    </item>
@@ -755,11 +766,7 @@ QGroupBox:title {
        </property>
        <layout class="QGridLayout" name="gridLayout_19">
         <item row="0" column="0">
-         <widget class="QPushButton" name="FindRectBtn">
-          <property name="text">
-           <string>找矩形</string>
-          </property>
-         </widget>
+         <widget class="QListView" name="listView"/>
         </item>
        </layout>
       </widget>
