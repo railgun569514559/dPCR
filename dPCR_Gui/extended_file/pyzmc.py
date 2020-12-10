@@ -5,8 +5,8 @@ import time
 systype = platform.system()
 if systype == 'Windows':
     if platform.architecture()[0] == '64bit':
-        zmcdll = ctypes.WinDLL('.\zmotion.dll')
-        zauxdll = ctypes.WinDLL('.\zauxdll.dll')
+        zmcdll = ctypes.WinDLL('..\extended_file\zmotion.dll')
+        zauxdll = ctypes.WinDLL('..\extended_file\zauxdll.dll')
         print('Windows x64')
     else:
         zmcdll = ctypes.WinDLL('./zmotion32.dll')
