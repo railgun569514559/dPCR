@@ -254,13 +254,19 @@ class Threshold(ImageShow):
         self.ThresholdValidator.setRange(0,255)
         self.ThresholdValudEdit.setPlaceholderText('输入0~255')
 
+        self.BlockSizeEdit.setText('3')
+        self.BlockSizeEdit.setPlaceholderText('请输入一个奇数')
+
     def executeThreshold(self):
         img = self.imgCopy
         if self.BlockSizeEdit.text() == '':
             block_size = 3
+        elif int(self.BlockSizeEdit.text())%2 == 0:
+            return
         else:
             block_size = int(self.BlockSizeEdit.text())
-        print(self.ThresholdRadio.isChecked())
+
+
         if self.ThresholdRadio.isChecked():
             threshholdVal = self.ThresholdValudEdit.text()
             if threshholdVal == '':
