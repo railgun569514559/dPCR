@@ -326,7 +326,6 @@ class MorphologicalTransformations(ImageShow):
 
         return kernel
 
-
 class ImageAnalysisWidget(Contrast, Blur, Rectification, Threshold,MorphologicalTransformations):
 
     def __init__(self, parent=None):
@@ -334,19 +333,20 @@ class ImageAnalysisWidget(Contrast, Blur, Rectification, Threshold,Morphological
 
         self.HoughCircleBtn.clicked.connect(self.HoughCircle)
         self.FindRectBtn.clicked.connect(self.FindContour)
-
+        self.FindMaxRectBtn.clicked.connect(self.FindMaxContour)
 
     def HoughCircle(self):
-        # app = QApplication(sys.argv)
-        self.newWindow = HoughCircleWidget(self.currentImg)
-        self.newWindow.show()
-        # sys.exit(app.exec_())
+        self.Window_Hough = HoughCircleWidget(self.currentImg)
+        self.Window_Hough.show()
+
 
     def FindContour(self):
-        self.newWindow1 = ContourFindWidget(self.currentImg)
-        self.newWindow1.show()
+        self.Window_Contours = ContourFindWidget(self.currentImg)
+        self.Window_Contours.show()
 
-
+    def FindMaxContour(self):
+        self.Window_maxContour = RectMaxFindWidget(self.currentImg)
+        self.Window_maxContour.show()
 
 class ContourFindWidget(QWidget, HoughUI):
     def __init__(self, image, parent=None):
@@ -373,7 +373,6 @@ class ContourFindWidget(QWidget, HoughUI):
         self.imgPlot.addItem(self.imgItem)
         self.imgItem.setImage(cimage)
 
-
 class HoughCircleWidget(QWidget, HoughUI):
     def __init__(self, image, parent=None):
         super(HoughCircleWidget, self).__init__(parent)
@@ -394,6 +393,33 @@ class HoughCircleWidget(QWidget, HoughUI):
         self.imgPlot.addItem(self.imgItem)
         self.imgItem.setImage(cimage)
 
+class RectMaxFindWidget(QWidget, HoughUI):
+    def __init__(self, image, parent=None):
+        super(RectMaxFindWidget, self).__init__(parent)
+        self.setupUi(self)
+        self.img = image
+        self.newWindowUI()
+
+    def newWindowUI(self):
+        self.resize(500, 700)
+        self.move(200, 200)
+        contours, hierarchy = cv.findContours(self.img, cv.RETR_TREE, cv.CHAIN_APPROX_NONE)
+        cnt = sorted(contours, key=cv.contourArea, reverse=True)[0]
+        rect = cv.minAreaRect(cnt)
+        box = cv.boxPoints(rect)
+        box = np.int0(box)
+
+        img_copy = self.img.copy()
+        cimage = cv.cvtColor(img_copy, cv.COLOR_BAYER_GR2BGR)
+        cimage = cv.drawContours(cimage, [box], 0, (255, 0, 0), 20)
+
+        self.showImgWindow = pg.GraphicsLayoutWidget()
+        self.gridLayout.addWidget(self.showImgWindow)
+        self.imgItem = pg.ImageItem()
+        self.imgPlot = self.showImgWindow.addPlot(title="")
+
+        self.imgPlot.addItem(self.imgItem)
+        self.imgItem.setImage(cimage)
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
