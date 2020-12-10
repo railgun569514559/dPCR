@@ -1,0 +1,7 @@
+BASE(0) '0 代表X轴 ，1代表Y轴
+UNITS = 1000 '1MM
+SPEED = 10
+CREEP = 1
+ACCEL = 50
+DECEL = 50
+MOVE(-2)
