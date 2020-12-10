@@ -128,6 +128,8 @@ class GammaImageEnhance(ImageShow):
         self.gammaVlidator.setNotation(QDoubleValidator.StandardNotation)
         self.gammaVlidator.setDecimals(1)
         self.gammaEdit.setValidator(self.gammaVlidator)
+        self.gammaEdit.setPlaceholderText('输入一个小数0~1')
+
 
     def GammaChange(self):
         gamma = float(self.gammaEdit.text())
@@ -191,11 +193,21 @@ class Blur(ImageShow):
         super(Blur, self).__init__(parent)
         self.blurBtn.clicked.connect(self.executeBlur)
 
-    def executeBlur(self):
+        self.blurEditValidator = QIntValidator(self)
+        self.blurEditValidator.setRange(1, 99)
+        self.BlurkernalEdit.setValidator(self.blurEditValidator)
+        self.BlurkernalEdit.setPlaceholderText('请输入一个奇数')
+        self.BlurkernalEdit.setText('3')
 
-        if self.kernalEdit.text() == '':
+    def executeBlur(self):
+        text = self.kernalEdit.text()
+        if text == '':
             return
-        kernalNum = int(self.kernalEdit.text())
+
+        if int(text) % 2 == 0:
+            return
+
+        kernalNum = int(text)
 
         if self.GaussBlurRadio.isChecked():
             kernal = (kernalNum, kernalNum)
@@ -237,6 +249,10 @@ class Threshold(ImageShow):
     def __init__(self, parent=None):
         super(Threshold, self).__init__(parent)
         self.ExecuteThresBtn.clicked.connect(self.executeThreshold)
+        self.ThresholdValudEdit.setText('125')
+        self.ThresholdValidator = QIntValidator()
+        self.ThresholdValidator.setRange(0,255)
+        self.ThresholdValudEdit.setPlaceholderText('输入0~255')
 
     def executeThreshold(self):
         img = self.imgCopy
@@ -279,7 +295,6 @@ class MorphologicalTransformations(ImageShow):
         self.TopHatBtn.clicked.connect(self.topHat)
         self.ErosionBtn.clicked.connect(self.erosion)
         self.DilationBtn.clicked.connect(self.dilation)
-
 
     def blackHat(self):
         kernel = self.getKernel()
@@ -326,7 +341,8 @@ class MorphologicalTransformations(ImageShow):
 
         return kernel
 
-class ImageAnalysisWidget(Contrast, Blur, Rectification, Threshold,MorphologicalTransformations):
+
+class ImageAnalysisWidget(Contrast, Blur, Rectification, Threshold, MorphologicalTransformations):
 
     def __init__(self, parent=None):
         super(ImageAnalysisWidget, self).__init__(parent)
@@ -339,7 +355,6 @@ class ImageAnalysisWidget(Contrast, Blur, Rectification, Threshold,Morphological
         self.Window_Hough = HoughCircleWidget(self.currentImg)
         self.Window_Hough.show()
 
-
     def FindContour(self):
         self.Window_Contours = ContourFindWidget(self.currentImg)
         self.Window_Contours.show()
@@ -347,6 +362,7 @@ class ImageAnalysisWidget(Contrast, Blur, Rectification, Threshold,Morphological
     def FindMaxContour(self):
         self.Window_maxContour = RectMaxFindWidget(self.currentImg)
         self.Window_maxContour.show()
+
 
 class ContourFindWidget(QWidget, HoughUI):
     def __init__(self, image, parent=None):
@@ -358,7 +374,7 @@ class ContourFindWidget(QWidget, HoughUI):
     def newWindowUI(self):
         self.resize(500, 700)
         self.move(200, 200)
-        cimage= cv.cvtColor(self.img, cv.COLOR_GRAY2BGR)
+        cimage = cv.cvtColor(self.img, cv.COLOR_GRAY2BGR)
         cnts, hierarchy = cv.findContours(self.img, cv.RETR_TREE, cv.CHAIN_APPROX_SIMPLE)
         print(len(cnts))
         for cnt in cnts:
@@ -372,6 +388,7 @@ class ContourFindWidget(QWidget, HoughUI):
 
         self.imgPlot.addItem(self.imgItem)
         self.imgItem.setImage(cimage)
+
 
 class HoughCircleWidget(QWidget, HoughUI):
     def __init__(self, image, parent=None):
@@ -392,6 +409,7 @@ class HoughCircleWidget(QWidget, HoughUI):
 
         self.imgPlot.addItem(self.imgItem)
         self.imgItem.setImage(cimage)
+
 
 class RectMaxFindWidget(QWidget, HoughUI):
     def __init__(self, image, parent=None):
@@ -420,6 +438,7 @@ class RectMaxFindWidget(QWidget, HoughUI):
 
         self.imgPlot.addItem(self.imgItem)
         self.imgItem.setImage(cimage)
+
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
